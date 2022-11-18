@@ -1,0 +1,16 @@
+async-exit-stack
+async-generator
+bcrypt
+email-validator
+fastapi
+passlib
+python-dateutil
+python-editor
+python-jose
+python-multipart
+mysqlclient
+requests
+SQLAlchemy
+uvicorn
+websockets
+paho-mqtt

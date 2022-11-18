@@ -1,0 +1,7 @@
+{
+  "username": "useradmin",
+  "rol_id": 2,
+  "email": "useradmin@example.com",
+“password”: useradmin 
+  "id": 5
+}

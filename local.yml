@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  mosquitto:
+    env_file: .env
+    build: 
+      context: .
+      dockerfile: ./compose/local/mqtt.Dockerfile
+    restart: always
+    image: eclipse-mosquitto:2
+    ports:
+      - "${EX_PORT_MQTT:-1883}:1883"
+    volumes: 
+      - ./eclipse-mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      
+  core:
+    env_file: .env
+    build: 
+      context: .
+      dockerfile: ./compose/local/core.Dockerfile
+      args:
+        MYSQL_SERVER: ${MYSQL_SERVER:-}
+        POSTGRES_SERVER: ${POSTGRES_SERVER:-}
+    restart: always
+    volumes:
+      - ./src:/home/app/web/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "10"

@@ -1,0 +1,5 @@
+flake8
+pytest
+pytest-dependency
+pytest-ordering
+pytest-env
