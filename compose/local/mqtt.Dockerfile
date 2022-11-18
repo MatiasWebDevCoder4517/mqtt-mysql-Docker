@@ -97,10 +97,17 @@ RUN set -x && \
     apk del build-deps && \
     rm -rf /build
 
+ADD /compose/mqttscript.sh $APP_HOME
+
+RUN chmod +x mqttscript.sh
+RUN ./mqttscript.sh
+
+
 VOLUME ["/mosquitto/data", "/mosquitto/log"]
 
 # Set up the entry point script and default command
-COPY docker-entrypoint.sh mosquitto-no-auth.conf /
+COPY /src/ $APP_HOME
+
 EXPOSE 1883
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/mqttscript.sh"]
 CMD ["/usr/sbin/mosquitto", "-c", "/mosquitto/config/mosquitto.conf"]

@@ -18,9 +18,7 @@ RUN chmod +x scripts.sh
 COPY /src/ $APP_HOME
 
 RUN ./scripts.sh
-
 RUN pip install --upgrade pip
-
 RUN pip install -r /home/app/web/$ENVTYPE.txt; mkdir /log;
 
 
