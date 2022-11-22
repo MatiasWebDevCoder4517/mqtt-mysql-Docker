@@ -98,16 +98,12 @@ RUN set -x && \
     rm -rf /build
 
 ADD /compose/mqttscript.sh $APP_HOME
-
 RUN chmod +x mqttscript.sh
 RUN ./mqttscript.sh
-
-
 VOLUME ["/mosquitto/data", "/mosquitto/log"]
 
 # Set up the entry point script and default command
 COPY /src/ $APP_HOME
-
 EXPOSE 1883
 ENTRYPOINT ["/mqttscript.sh"]
 CMD ["/usr/sbin/mosquitto", "-c", "/mosquitto/config/mosquitto.conf"]
